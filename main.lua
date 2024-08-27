@@ -13,7 +13,7 @@ function love.errorhandler(msg)
 end
 
 function love.load()
-    screen_width = 1050
+    screen_width = 775
     screen_height = 1300
     love.window.setTitle("PacManCopyMadeByLianaHockin")
     love.window.setMode(screen_width, screen_height)
@@ -27,19 +27,29 @@ function love.load()
     --box = Box(400,150)
 
     walls = {
-        Wall(0,3),Wall(1,3),Wall(2,3),Wall(3,3),Wall(4,3),Wall(5,3),Wall(6,3),Wall(7,3),Wall(8,3),Wall(9,3),Wall(10,3),Wall(11,3),
-        Wall(12,3),Wall(13,3),Wall(14,3),Wall(15,3),Wall(16,3),Wall(17,3),Wall(18,3),Wall(19,3),Wall(20,3),
-        Wall(0,4),Wall(10,4),Wall(20,4),
-        Wall(0,5),Wall(10,5),Wall(20,5),
-        Wall(0,6),Wall(20,6),
-        Wall(0,7),Wall(20,7),
-        Wall(0,8),Wall(20,8),
-        Wall(0,9),Wall(1,9),Wall(2,9),Wall(3,9),Wall(20,9),
-        Wall(3,10),
-        Wall(3,11),
-        Wall(3,12),
-        Wall(2,12),Wall(1,12),Wall(0,12),
-        Wall(0,15),
+        Wall(1,3),Wall(2,3),Wall(3,3),Wall(4,3),Wall(5,3),Wall(6,3),Wall(7,3),Wall(8,3),Wall(9,3),Wall(10,3),Wall(11,3),Wall(12,3),Wall(13,3),Wall(14,3),Wall(15,3),Wall(16,3),Wall(17,3),Wall(18,3),Wall(19,3),Wall(20,3),Wall(21,3),Wall(22,3),Wall(23,3),Wall(24,3),Wall(25,3),Wall(26,3),Wall(27,3),Wall(28,3),Wall(29,3),
+        Wall(1,4),Wall(15,4),Wall(29,4),
+        Wall(1,5),Wall(15,5),Wall(29,5),
+        Wall(1,6),Wall(4,6),Wall(5,6),Wall(6,6),Wall(9,6),Wall(10,6),Wall(11,6),Wall(12,6),Wall(15,6),Wall(18,6),Wall(19,6),Wall(20,6),Wall(21,6),Wall(24,6),Wall(25,6),Wall(26,6),Wall(29,6),
+        Wall(1,7),Wall(4,7),Wall(5,7),Wall(6,7),Wall(9,7),Wall(10,7),Wall(11,7),Wall(12,7),Wall(15,7),Wall(18,7),Wall(19,7),Wall(20,7),Wall(21,7),Wall(24,7),Wall(25,7),Wall(26,7),Wall(29,7),
+        Wall(1,8),Wall(29,8),
+        Wall(1,9),Wall(29,9),
+        Wall(1,10),Wall(4,10),Wall(5,10),Wall(6,10),Wall(9,10),Wall(12,10),Wall(13,10),Wall(14,10),Wall(15,10),Wall(16,10),Wall(17,10),Wall(18,10),Wall(21,10),Wall(24,10),Wall(25,10),Wall(26,10),Wall(29,10),
+        Wall(1,11),Wall(9,11),Wall(15,11),Wall(21,11),Wall(29,11),
+        Wall(1,12),Wall(9,12),Wall(15,12),Wall(21,12),Wall(29,12),
+        Wall(1,13),Wall(2,13),Wall(3,13),Wall(4,13),Wall(5,13),Wall(6,13),Wall(9,13),Wall(10,13),Wall(11,13),Wall(12,13),Wall(15,13),Wall(18,13),Wall(19,13),Wall(20,13),Wall(21,13),Wall(24,13),Wall(25,13),Wall(26,13),Wall(27,13),Wall(28,13),Wall(29,13),
+        Wall(6,14),Wall(9,14),Wall(21,14),Wall(24,14),
+        Wall(6,15),Wall(9,15),Wall(21,15),Wall(24,15),
+        Wall(1,16),Wall(2,16),Wall(3,16),Wall(4,16),Wall(5,16),Wall(6,16),Wall(9,16),Wall(12,16),Wall(13,16),Wall(17,16),Wall(18,16),Wall(21,16),Wall(24,16),Wall(25,16),Wall(26,16),Wall(27,16),Wall(28,16),Wall(29,16),
+        Wall(12,17),Wall(18,17),
+        Wall(12,18),Wall(18,18),
+        Wall(1,19),Wall(2,19),Wall(3,19),Wall(4,19),Wall(5,19),Wall(6,19),Wall(9,19),Wall(12,19),Wall(13,19),Wall(14,19),Wall(15,19),Wall(16,19),Wall(17,19),Wall(18,19),Wall(21,19),Wall(24,19),Wall(25,19),Wall(26,19),Wall(27,19),Wall(28,19),Wall(29,19),
+        Wall(6,20),Wall(9,20),Wall(21,20),Wall(24,20),
+        Wall(6,21),Wall(9,21),Wall(21,21),Wall(24,21),
+        Wall(1,22),Wall(2,22),Wall(3,22),Wall(4,22),Wall(5,22),Wall(6,22),Wall(9,22),Wall(12,22),Wall(13,22),Wall(14,22),Wall(15,22),Wall(16,22),Wall(17,22),Wall(18,22),Wall(21,22),Wall(24,22),Wall(25,22),Wall(26,22),Wall(27,22),Wall(28,22),Wall(29,22),
+        Wall(1,23),Wall(15,23),Wall(29,23),
+        Wall(1,24),Wall(15,24),Wall(29,24),
+        Wall(1,25),
     }
 
     objects = {}
