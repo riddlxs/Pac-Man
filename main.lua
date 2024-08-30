@@ -23,12 +23,15 @@ function love.load()
     require "player"
     require "box"
     require "pellet"
+    require "enemy"
+    player = Player(372,669)
+    enemy = Enemy(296,444)
 
     gameFont = love.graphics.newFont(30)
-    
-    player = Player (372,669)
-    --box = Box(400,150)
-    walls = {
+
+    objects = {Player (372,669),Enemy(280,444),Pellet (0,0)}
+
+    objects = {Player (372,669),Enemy(280,444),Pellet (0,0),
         Wall(1,3),Wall(2,3),Wall(3,3),Wall(4,3),Wall(5,3),Wall(6,3),Wall(7,3),Wall(8,3),Wall(9,3),Wall(10,3),Wall(11,3),Wall(12,3),Wall(13,3),Wall(14,3),Wall(15,3),Wall(16,3),Wall(17,3),Wall(18,3),Wall(19,3),Wall(20,3),Wall(21,3),Wall(22,3),Wall(23,3),Wall(24,3),Wall(25,3),Wall(26,3),Wall(27,3),Wall(28,3),Wall(29,3),
         Wall(1,4),Wall(15,4),Wall(29,4),
         Wall(1,5),Wall(15,5),Wall(29,5),
@@ -62,26 +65,17 @@ function love.load()
         Wall(1,33),Wall(29,33),
         Wall(1,34),Wall(2,34),Wall(3,34),Wall(4,34),Wall(5,34),Wall(6,34),Wall(7,34),Wall(8,34),Wall(9,34),Wall(10,34),Wall(11,34),Wall(12,34),Wall(13,34),Wall(14,34),Wall(15,34),Wall(16,34),Wall(17,34),Wall(18,34),Wall(19,34),Wall(20,34),Wall(21,34),Wall(22,34),Wall(23,34),Wall(24,34),Wall(25,34),Wall(26,34),Wall(27,34),Wall(28,34),Wall(29,34   ),
     }
-    pellet = {
+    pellets = {
         Pellet(3,6)
     }
-
-    objects = {}
-    table.insert(objects, player)
-    for _, wall in ipairs(walls) do
-        table.insert(objects, wall)
-    end
-    for _, pellet in ipairs(pellet) do
-            table.insert(objects, pellet)
-    end
-    table.insert(objects, box)
 end
 
 function love.update(dt)
+    player:update(dt)
+    enemy:update(dt)
     for i,v in ipairs(objects) do 
         v:update(dt)
     end
-
     local loop = true
     local limit = 0
 
@@ -104,40 +98,18 @@ function love.update(dt)
             end
         end
     end
-    if pellet.isVisible and checkCollision(player, pellet) then
-        pellet.isVisible = false
-    end
-end
-
-
-
-        -- quick efficient code v = value, i = index
-        --v:update(dt)
-
-        --for j,w in ipairs(objects) do --j and w because its simple, next letters in alphabet, theyre just variables
-            --if v ~= w then
-                --v:resolveCollision(w)
-            --end
-        --end
-    --end
---end
 
 function love.draw()
     for i,v in ipairs(objects) do
         v:draw()
     end
-    if pellet.isVisible then
-        love.graphics.draw(pellet.image, pellet.x, pellet.y)
-    end
-end
 
-    
-    --love.graphics.setColor(1,1,0)
-    --love.graphics.setFont(gameFont)
-   --Ready = love.graphics.print("READY!", 336 , 510)
    function checkCollision(a, b)
     return a.x < b.x + b.image:getWidth() and
            b.x < a.x + a.width and
            a.y < b.y + b.image:getHeight() and
            b.y < a.y + a.height
+        end
+    end
 end
+

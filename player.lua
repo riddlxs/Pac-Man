@@ -3,8 +3,6 @@ Player = Entity:extend()
 function Player:new(x, y)
     Player.super.new(self, x, y, "images/slime2.png")
     self.moveSpeed = 150
-    self.strength = 10
-    --windowWidth, windowHeight = love.graphics.getDimensions()
 end
 
 function Player:update(dt)
