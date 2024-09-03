@@ -2,7 +2,8 @@ Enemy = Entity:extend()
 
 function Enemy:new(x, y)
     Enemy.super.new(self, x, y, "images/bat.png")
-    self.speed = 110
+    self.speed = 0
+    self.strength = 10
 end
 
 function Enemy:update(dt)

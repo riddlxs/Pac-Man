@@ -25,13 +25,13 @@ function love.load()
     require "pellet"
     require "enemy"
     player = Player(372,669)
-    enemy = Enemy(296,444)
+    enemy = Enemy(280,444)
+    score = 0
 
     gameFont = love.graphics.newFont(30)
 
-    objects = {Player (372,669),Enemy(280,444),Pellet (0,0)}
-
-    objects = {Player (372,669),Enemy(280,444),Pellet (0,0),
+    objects = {Player (372,669),Enemy(280,444),Pellet(5,5),Pellet(6,5),Pellet(7,5),Pellet(8,5),
+    
         Wall(1,3),Wall(2,3),Wall(3,3),Wall(4,3),Wall(5,3),Wall(6,3),Wall(7,3),Wall(8,3),Wall(9,3),Wall(10,3),Wall(11,3),Wall(12,3),Wall(13,3),Wall(14,3),Wall(15,3),Wall(16,3),Wall(17,3),Wall(18,3),Wall(19,3),Wall(20,3),Wall(21,3),Wall(22,3),Wall(23,3),Wall(24,3),Wall(25,3),Wall(26,3),Wall(27,3),Wall(28,3),Wall(29,3),
         Wall(1,4),Wall(15,4),Wall(29,4),
         Wall(1,5),Wall(15,5),Wall(29,5),
@@ -63,53 +63,50 @@ function love.load()
         Wall(1,31),Wall(4,31),Wall(5,31),Wall(6,31),Wall(7,31),Wall(8,31),Wall(9,31),Wall(10,31),Wall(11,31),Wall(12,31),Wall(15,31),Wall(18,31),Wall(19,31),Wall(20,31),Wall(21,31),Wall(22,31),Wall(23,31),Wall(24,31),Wall(25,31),Wall(26,31),Wall(29,31),
         Wall(1,32),Wall(29,32),
         Wall(1,33),Wall(29,33),
-        Wall(1,34),Wall(2,34),Wall(3,34),Wall(4,34),Wall(5,34),Wall(6,34),Wall(7,34),Wall(8,34),Wall(9,34),Wall(10,34),Wall(11,34),Wall(12,34),Wall(13,34),Wall(14,34),Wall(15,34),Wall(16,34),Wall(17,34),Wall(18,34),Wall(19,34),Wall(20,34),Wall(21,34),Wall(22,34),Wall(23,34),Wall(24,34),Wall(25,34),Wall(26,34),Wall(27,34),Wall(28,34),Wall(29,34   ),
-    }
-    pellets = {
-        Pellet(3,6)
+        Wall(1,34),Wall(2,34),Wall(3,34),Wall(4,34),Wall(5,34),Wall(6,34),Wall(7,34),Wall(8,34),Wall(9,34),Wall(10,34),Wall(11,34),Wall(12,34),Wall(13,34),Wall(14,34),Wall(15,34),Wall(16,34),Wall(17,34),Wall(18,34),Wall(19,34),Wall(20,34),Wall(21,34),Wall(22,34),Wall(23,34),Wall(24,34),Wall(25,34),Wall(26,34),Wall(27,34),Wall(28,34),Wall(29,34),
     }
 end
 
 function love.update(dt)
     player:update(dt)
-    enemy:update(dt)
-    for i,v in ipairs(objects) do 
+    for i, v in ipairs(objects) do 
         v:update(dt)
     end
+
     local loop = true
     local limit = 0
 
-    while loop do -- be careful with while loops, can be an infinite
-    loop = false --fixes infinite while loop, safety measure
+    while loop do
+        loop = false
     
-    limit = limit + 1
-    if limit > 100 then 
-        break 
-        --doing this because we want to check if the limit is greater than 100, if so, we want break out of while loop
-    end
-    
-    for i=1, #objects-1 do --only runs twice because its objects -1 is 2 
-    
-            for j = i+1, #objects do
+        limit = limit + 1
+        if limit > 100 then 
+            break 
+        end
+
+        for i = 1, #objects - 1 do
+            for j = i + 1, #objects do
                 local collision = objects[i]:resolveCollision(objects[j])
-                    if collision then
-                        loop = true
+                if collision then
+                    loop = true
                 end
             end
         end
     end
+end
+
 
 function love.draw()
-    for i,v in ipairs(objects) do
+    for i, v in ipairs(objects) do
         v:draw()
     end
+    love.graphics.setFont(gameFont)
+    love.graphics.print("Score: " .. score, 10, 10)
+end
 
-   function checkCollision(a, b)
+function checkCollision(a, b)
     return a.x < b.x + b.image:getWidth() and
            b.x < a.x + a.width and
            a.y < b.y + b.image:getHeight() and
            b.y < a.y + a.height
-        end
-    end
 end
-
