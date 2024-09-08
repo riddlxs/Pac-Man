@@ -1,9 +1,9 @@
 Enemy = Entity:extend()
 
 function Enemy:new(x, y)
-    Enemy.super.new(self, x, y, "images/bat.png")
-    self.speed = 0
-    self.strength = 10
+    Enemy.super.new(self, x, y, "images/bigbat.png")
+    self.speed = 50
+    self.strength = 1
 end
 
 function Enemy:update(dt)
@@ -33,5 +33,14 @@ function Enemy:update(dt)
         self.y = 0
     elseif self.y + self.height > window_height then
         self.y = window_height - self.height
+    end
+    local dx1 = math.abs((player.x + 15) - (self.x + 3))
+    local dy1 = math.abs((player.y + 15) - (self.y + 3))
+
+    if (dx1 <= 25) and (dy1 <= 25) and (player.power == false) then
+        player.x = 372
+        player.y = 669
+        player.moveSpeed = 110
+        
     end
 end
